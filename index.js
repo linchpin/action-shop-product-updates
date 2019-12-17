@@ -1,5 +1,5 @@
 const core = require('@actions/core');
-const wait = require('./woocommerce');
+const woocommerce = require('./woocommerce');
 
 // most @actions toolkit packages have async methods
 async function run() {

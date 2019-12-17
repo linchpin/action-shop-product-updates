@@ -1,8 +1,9 @@
 const core = require('@actions/core');
+const WooCommerceRestApi = require("@woocommerce/woocommerce-rest-api").default;
 
 const WooCommerce = new WooCommerceRestApi({
 	url: core.getInput( 'woo_api_host' ),
-	consumerKey: core.getInput( 'woo_api_secret' ),
+	consumerKey: core.getInput( 'woo_api_key' ),
 	consumerSecret: core.getInput( 'woo_api_secret' ),
 	version: 'wc/v3',
 	queryStringAuth: true // Force Basic Authentication as query string true and using under HTTPS

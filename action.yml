@@ -1,20 +1,20 @@
 name: 'Update WooCommerce Products on Release'
-description: 'Update a specific product id on your woocommerce shop with the latest information when a release happens'
+description: 'Update a specific product id on your WooCommerce shop with the latest information when a release happens'
 inputs:
   woo_api_host:
-    description: 'host store url for woocommerce'
+    description: 'host store url for WooCommerce'
     required: true
   woo_api_secret:  # id of input
-    description: 'woocommerce api consumer secret'
+    description: 'WooCommerce api consumer secret'
     required: true
   woo_api_key:  # id of input
-    description: 'woocommerce api consumer key'
+    description: 'WooCommerce api consumer key'
     required: true
   woo_product_id:  # id of input
-    description: 'woocommerce product id to update'
+    description: 'WooCommerce product id to update'
     required: true
   woo_product_version:  # id of input
-    description: 'woocommerce product id to update'
+    description: 'WooCommerce product id to update'
     required: true
 outputs:
   success: # output will be available to future steps

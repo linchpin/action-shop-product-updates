@@ -1,7 +1,7 @@
 {
-  "name": "action-shop-product-update",
+  "name": "action-shop-product-updates",
   "version": "1.0.0",
-  "description": "Update WooCommerce on Renplease",
+  "description": "Update WooCommerce downloadable product variations on release",
   "main": "index.js",
   "scripts": {
     "lint": "eslint index.js",
@@ -10,19 +10,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions/javascript-action.git"
+    "url": "git+https://github.com/linchpin/action-shop-product-updates.git"
   },
   "keywords": [
-    "GitHub",
-    "Actions",
-    "JavaScript"
+    "WooCommerce",
+    "Automation"
   ],
   "author": "Linchpin",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/actions/javascript-action/issues"
+    "url": "https://github.com/linchpin/action-shop-product-updates/issues"
   },
-  "homepage": "https://github.com/actions/javascript-action#readme",
+  "homepage": "https://github.com/linchpin/action-shop-product-updates#readme",
   "dependencies": {
     "@actions/core": "^1.1.1",
     "@actions/github": "^2.0.0",

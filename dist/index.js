@@ -438,6 +438,7 @@ if (typeof process === 'undefined' || process.type === 'renderer') {
 /***/ 85:
 /***/ (function(module, __unusedexports, __webpack_require__) {
 
+const core = __webpack_require__(470);
 const WooCommerceRestApi = __webpack_require__(548).default;
 
 const WooCommerce = new WooCommerceRestApi({

@@ -1,13 +1,24 @@
 name: 'Update WooCommerce Products on Release'
-description: 'Update the products on shop.linchpin.com with the latest information when a release happens'
+description: 'Update a specific product id on your woocommerce shop with the latest information when a release happens'
 inputs:
-  milliseconds:  # id of input
-    description: 'number of milliseconds to wait'
+  woo_api_host:
+    description: 'host store url for woocommerce'
     required: true
-    default: '1000'
+  woo_api_secret:  # id of input
+    description: 'woocommerce api consumer secret'
+    required: true
+  woo_api_key:  # id of input
+    description: 'woocommerce api consumer key'
+    required: true
+  woo_product_id:  # id of input
+    description: 'woocommerce product id to update'
+    required: true
+  woo_product_version:  # id of input
+    description: 'woocommerce product id to update'
+    required: true
 outputs:
-  time: # output will be available to future steps 
-    description: 'The message to output'
+  success: # output will be available to future steps
+    description: 'Did we successfully update everything?'
 runs:
   using: 'node12'
   main: 'dist/index.js'

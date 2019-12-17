@@ -1,7 +1,7 @@
 {
-  "name": "javascript-action",
+  "name": "action-shop-product-update",
   "version": "1.0.0",
-  "description": "JavaScript Action Template",
+  "description": "Update WooCommerce on Renplease",
   "main": "index.js",
   "scripts": {
     "lint": "eslint index.js",
@@ -17,14 +17,16 @@
     "Actions",
     "JavaScript"
   ],
-  "author": "GitHub",
+  "author": "Linchpin",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/actions/javascript-action/issues"
   },
   "homepage": "https://github.com/actions/javascript-action#readme",
   "dependencies": {
-    "@actions/core": "^1.1.1"
+    "@actions/core": "^1.1.1",
+    "@actions/github": "^2.0.0",
+    "@woocommerce/woocommerce-rest-api": "^1.0.1"
   },
   "devDependencies": {
     "@zeit/ncc": "^0.20.5",

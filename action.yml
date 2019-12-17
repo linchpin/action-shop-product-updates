@@ -1,5 +1,5 @@
-name: 'Wait'
-description: 'Wait a designated number of milliseconds'
+name: 'Update WooCommerce Products on Release'
+description: 'Update the products on shop.linchpin.com with the latest information when a release happens'
 inputs:
   milliseconds:  # id of input
     description: 'number of milliseconds to wait'

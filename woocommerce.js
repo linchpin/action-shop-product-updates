@@ -9,6 +9,9 @@ const api                = new WooCommerceRestApi( {
 } );
 
 let woocommerce = function () {
+
+
+
 	api.get( "products/" + parseInt( core.getInput( 'woo_product_id' ), 10 ) + "/variations" )
 		.then( ( response ) => {
 
@@ -23,32 +26,28 @@ let woocommerce = function () {
 
 			today = yyyy + '/' + mm + '/' + dd;
 
-			// loop through our software and update accordingly
-			variations.forEach( element => {
+			let download_data = {
+				meta_data: [
+					{
+						'key' : '_api_last_updated',
+						'value' : today
+					},
+					{
+						'key' : '_api_new_version',
+						'value' : core.getInput('woo_product_version' )
+					}
+				]
+			};
 
-				let download_data = {
-					meta_data: [
-						{
-							'key' : '_api_last_updated',
-							'value' : today
-						},
-						{
-							'key' : '_api_new_version',
-							'value' : core.getInput('woo_product_version' )
-						}
-					]
-				};
+			core.debug(`Updating Product ID: ${element.id}`);
 
-				core.debug(`Updating Product ID: ${element.id}`);
-
-				api.put( "products/" + parseInt( core.getInput( 'woo_product_id' ), 10 ) + "/variations/" + parseInt( element.id ), download_data )
-					.then( ( response ) => {
-						core.debug( response.data );
-					} )
-					.catch( ( error ) => {
-						core.setFailed( `Product Meta failed with error ${error}` );
-					} );
-			} );
+			api.put( "products/" + parseInt( core.getInput( 'woo_product_id' ), 10 ) )
+				.then( ( response ) => {
+					core.debug( response.data );
+				} )
+				.catch( ( error ) => {
+					core.setFailed( `Product Meta failed with error ${error}` );
+				} );
 
 		} )
 		.catch( ( error ) => {

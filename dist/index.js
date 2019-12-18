@@ -473,18 +473,21 @@ let woocommerce = function () {
 					}
 				};
 
+				core.debug(`Updating Product ID: ${element.id}`);
+
 				api.put( "products/" + parseInt( core.getInput( 'woo_product_id' ), 10 ) + "/variations/" + parseInt( element.id ), download_data )
 					.then( ( response ) => {
 						console.log( response.data );
 					} )
 					.catch( ( error ) => {
-						console.log( error.response.data );
+						core.setFailed( `Action failed with error ${error.response}` );
 					} );
 			} );
 
 		} )
 		.catch( ( error ) => {
 			console.log( error.response );
+			core.setFailed( `Action failed with error ${error.response}` );
 		} );
 };
 

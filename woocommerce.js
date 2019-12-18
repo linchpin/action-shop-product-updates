@@ -40,14 +40,14 @@ let woocommerce = function () {
 						console.log( response.data );
 					} )
 					.catch( ( error ) => {
-						core.setFailed( `Action failed with error ${error.response}` );
+						core.setFailed( `Action failed with error ${error}` );
 					} );
 			} );
 
 		} )
 		.catch( ( error ) => {
 			console.log( error.response );
-			core.setFailed( `Action failed with error ${error.response}` );
+			core.setFailed( `Action failed with error ${error}` );
 		} );
 };
 

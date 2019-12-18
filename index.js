@@ -1,14 +1,12 @@
-const core = require('@actions/core');
-const woocommerce = require('./woocommerce');
+const woocommerce = require( './woocommerce' );
 
 // most @actions toolkit packages have async methods
 async function run() {
-  try { 
-	woocommerce();
-  } 
-  catch (error) {
-    core.setFailed(error.message);
-  }
+	try {
+		woocommerce();
+	} catch ( error ) {
+		core.setFailed( error.message );
+	}
 }
 
-run()
+run();

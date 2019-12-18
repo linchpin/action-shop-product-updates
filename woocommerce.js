@@ -1,55 +1,51 @@
-const core = require('@actions/core');
-const WooCommerceRestApi = require("@woocommerce/woocommerce-rest-api").default;
-
-const WooCommerce = new WooCommerceRestApi({
+const core               = require( '@actions/core' );
+const WooCommerceRestApi = require( '@woocommerce/woocommerce-rest-api' ).default;
+const api                = new WooCommerceRestApi( {
 	url: core.getInput( 'woo_api_host' ),
 	consumerKey: core.getInput( 'woo_api_key' ),
 	consumerSecret: core.getInput( 'woo_api_secret' ),
 	version: 'wc/v3',
 	queryStringAuth: true // Force Basic Authentication as query string true and using under HTTPS
-});
+} );
 
 let woocommerce = function () {
-	return new Promise(( resolve, reject ) => {
+	api.get( "products/" + parseInt( core.getInput( 'woo_product_id' ), 10 ) + "/variations" )
+		.then( ( response ) => {
 
-		WooCommerce.get("products/" + parseInt( core.getInput( 'woo_product_id' ), 10 ) + "/variations")
-			.then( ( response ) => {
+			// get our variations.
+			let variations = response.data;
 
-				// get our variations.
-				let variations = response.data;
+			// get out release date in the proper format
+			let today = new Date();
+			let dd    = String( today.getDate() ).padStart( 2, '0' );
+			let mm    = String( today.getMonth() + 1 ).padStart( 2, '0' );
+			let yyyy  = today.getFullYear();
 
-				// get out release date in the proper format
-				let today = new Date();
-				let dd = String( today.getDate() ).padStart(2, '0');
-				let mm = String(today.getMonth() + 1).padStart(2, '0');
-				let yyyy = today.getFullYear();
+			today = yyyy + '/' + mm + '/' + dd;
 
-				today = yyyy + '/' + mm + '/' + dd;
+			// loop through our software and update accordingly
+			variations.foreach( element => {
 
-				// loop through our software and update accordingly
-				variations.foreach( element => {
+				let download_data = {
+					meta_data: {
+						'_api_last_updated': today,
+						'_api_new_version': core.getInput('woo_product_version' )
+					}
+				};
 
-					let download_data = {
-						meta_data: {
-							'_api_last_updated': today,
-							'_api_new_version': core.getInput('woo_product_version' )
-						}
-					};
+				WooCommerce.put( element._links.self, download_data )
+					.then( ( response ) => {
+						console.log( response.data );
+					} )
+					.catch( ( error ) => {
+						console.log( error.response.data );
+					} );
+			} );
 
-					WooCommerce.put( element._links.self, download_data )
-						.then( ( response ) => {
-							console.log( response.data );
-						} )
-						.catch( ( error ) => {
-							console.log( error.response.data );
-						} );
-				} );
-
-			} )
-			.catch( ( error ) => {
-				console.log( error.response.data );
-			});
-	});
-}
+		} )
+		.catch( ( error ) => {
+			console.log( error.response );
+		} );
+};
 
 module.exports = woocommerce;

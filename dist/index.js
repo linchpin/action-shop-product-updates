@@ -467,26 +467,31 @@ let woocommerce = function () {
 			variations.forEach( element => {
 
 				let download_data = {
-					meta_data: {
-						'_api_last_updated': today,
-						'_api_new_version': core.getInput('woo_product_version' )
-					}
+					meta_data: [
+						{
+							'key' : '_api_last_updated',
+							'value' : today
+						},
+						{
+							'key' : '_api_new_version',
+							'value' : core.getInput('woo_product_version' )
+						}
+					]
 				};
 
 				core.debug(`Updating Product ID: ${element.id}`);
 
 				api.put( "products/" + parseInt( core.getInput( 'woo_product_id' ), 10 ) + "/variations/" + parseInt( element.id ), download_data )
 					.then( ( response ) => {
-						console.log( response.data );
+						core.debug( response.data );
 					} )
 					.catch( ( error ) => {
-						core.setFailed( `Action failed with error ${error}` );
+						core.setFailed( `Product Meta failed with error ${error}` );
 					} );
 			} );
 
 		} )
 		.catch( ( error ) => {
-			console.log( error.response );
 			core.setFailed( `Action failed with error ${error}` );
 		} );
 };

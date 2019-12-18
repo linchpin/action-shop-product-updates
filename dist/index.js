@@ -464,7 +464,7 @@ let woocommerce = function () {
 			today = yyyy + '/' + mm + '/' + dd;
 
 			// loop through our software and update accordingly
-			variations.foreach( element => {
+			variations.forEach( element => {
 
 				let download_data = {
 					meta_data: {

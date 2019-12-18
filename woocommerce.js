@@ -33,7 +33,7 @@ let woocommerce = function () {
 					}
 				};
 
-				WooCommerce.put( element._links.self, download_data )
+				api.put( "products/" + parseInt( core.getInput( 'woo_product_id' ), 10 ) + "/variations/" + parseInt( element.id ), download_data )
 					.then( ( response ) => {
 						console.log( response.data );
 					} )

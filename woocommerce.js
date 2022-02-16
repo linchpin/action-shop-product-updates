@@ -35,7 +35,9 @@ let woocommerce = function () {
 
 	api.put( "products/" + parseInt( core.getInput( 'woo_product_id' ), 10 ), download_data )
 		.then( ( response ) => {
-			core.debug( 'Product Meta updated:' + core.getInput( 'woo_product_id' ) );
+      if ( response ) {
+        core.debug( 'Product Meta updated:' + core.getInput( 'woo_product_id' ) );
+      }
 		} )
 		.catch( ( error ) => {
 			core.setFailed( `Product Meta failed with error ${error}` );

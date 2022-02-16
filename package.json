@@ -1,6 +1,6 @@
 {
   "name": "action-shop-product-updates",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Update WooCommerce downloadable product variations on release",
   "main": "index.js",
   "scripts": {
@@ -22,13 +22,13 @@
   },
   "homepage": "https://github.com/linchpin/action-shop-product-updates#readme",
   "dependencies": {
-    "@actions/core": "^1.2.4",
-    "@actions/github": "^2.2.0",
-    "@woocommerce/woocommerce-rest-api": "^1.0.1"
+    "@actions/core": "1.6.0",
+    "@actions/github": "5.0.0",
+    "@woocommerce/woocommerce-rest-api": "git+https://github.com/woocommerce/woocommerce-rest-api-js-lib.git"
   },
   "devDependencies": {
-    "@zeit/ncc": "^0.22.1",
-    "eslint": "^6.8.0",
-    "jest": "^26.0.1"
+    "@vercel/ncc": "0.33.3",
+    "eslint": "8.9.0",
+    "jest": "27.5.1"
   }
 }

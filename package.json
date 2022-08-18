@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/linchpin/action-shop-product-updates#readme",
   "dependencies": {
-    "@actions/core": "1.6.0",
+    "@actions/core": "1.9.1",
     "@actions/github": "5.0.0",
     "@woocommerce/woocommerce-rest-api": "git+https://github.com/woocommerce/woocommerce-rest-api-js-lib.git"
   },
